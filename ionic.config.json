@@ -1,0 +1,9 @@
+{
+    "name": "SLC",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "angular",
+    "appId": "com.infintro.smartlampcontroller"
+
+}

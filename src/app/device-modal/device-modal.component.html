@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancel</ion-button>
+      </ion-buttons>
+      <!-- <ion-title>Connect your new device</ion-title> -->
+      <ion-buttons slot="end">
+          <ion-item id="connectionStateLabel">{{ connectionStateLabel }}</ion-item>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+    <!-- <ion-item>
+        <ion-label >Device ID : {{mac}}</ion-label>
+        </ion-item> -->
+    <ion-item>
+      <ion-label position="floating">Enter a name for your device modal</ion-label>
+      <ion-input [disabled]="connectionState" type="text" placeholder="Device Name" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-select [disabled]="connectionState" interface="popover" placeholder="Select Type" [(ngModel)]="type">
+          <ion-select-option value="Wood_Lamp">Wood Lamp</ion-select-option>
+          <ion-select-option value="Acrylic_Lamp">Acrylic Lamp</ion-select-option>
+          <ion-select-option value="Trophy">Trophy</ion-select-option>
+          <ion-select-option value="Cloud">Cloud</ion-select-option>
+      </ion-select>
+  </ion-item>
+  <div class="float-container">
+      <div class="float-child">
+          <ion-button id="connectionStateBtn" [color]="connectionColor" (click)="isDisconnected()" expand="block" [fill]="buttonFill" shape="round">{{ connectionStateLabel }}</ion-button>
+      </div>
+
+      <div class="float-child">
+          <ion-button [disabled]="connectionState" expand="block" shape="round"  (click)="addCategory()">Add Device</ion-button>
+      </div>
+  </div>
+</ion-content>

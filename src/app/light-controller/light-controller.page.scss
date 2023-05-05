@@ -1,0 +1,143 @@
+#bg {
+    position: absolute;
+    width: 95%;
+    height: 42%;
+    background-color: aqua;
+    top: 0;
+    mix-blend-mode: hue;
+    margin: 20px;
+    border-radius: 50px;
+}
+
+#lampImg {
+    width: 95%;
+    border-radius: 50px;
+    margin: 20px;
+}
+
+#slider {
+    width: 95%;
+}
+
+.float-container {
+
+    padding: 20px;
+}
+
+.float-child {
+    width: 33.33%;
+    float: left;
+    // padding: 20px;
+
+}
+
+
+ion-modal {
+    --height: 50%;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 1;
+}
+
+ion-modal ion-toolbar {
+    --background: rgb(14 116 144);
+    --color: white;
+}
+
+.color-picker-container {
+    width: 350px;
+    height: 400px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    position: absolute;
+    background: white;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 20px;
+}
+
+.color-picker-header {
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+}
+
+#hsl-selected-color-back,
+#hsl-selected-color {
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+    margin: 10px 0;
+    margin-top: 10px;
+    background: radial-gradient(black 15%, transparent 16%) 0 0, radial-gradient(black 15%, transparent 16%) 8px 8px, radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px, radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
+    background-color: #282828;
+    background-size: 16px 16px;
+}
+
+#hsl-selected-color {
+    margin-top: 0;
+    border: 1px solid lightgrey;
+}
+
+.slider-group {
+    width: 100%;
+}
+
+.slider-group .slider-container {
+    height: 40px;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 15px;
+}
+
+.slider-group input[type=range] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 16px;
+    border-radius: 8px;
+    border: 1px solid lightgrey;
+}
+
+.slider-group input[type=range]:focus {
+    outline: none;
+}
+
+.slider-group input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);
+    border: 1px solid lightgrey;
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: 0px;
+}
+
+.slider-group input[type=number] {
+    position: absolute;
+    margin: -5px 0;
+    right: 20px;
+    width: 60px;
+    text-align: center;
+}
+
+.slider-group label {
+    width: 10%;
+    height: 24px;
+    line-height: 12px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.slider-group input[type=range],
+.slider-group label {
+    float: left;
+}

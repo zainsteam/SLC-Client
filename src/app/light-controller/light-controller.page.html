@@ -1,0 +1,207 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+            <ion-button (click)="editName()">
+                <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>{{lamp_name}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+    <!--
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 3</ion-title>
+    </ion-toolbar>
+  </ion-header>
+-->
+    <!--
+
+  <app-explore-container name="Tab 3 page"></app-explore-container>
+-->
+    <ion-card id="lampImg" >
+        <img src="/assets/img/App_Icon_512x1024_Trans.png" [style.background]="color">
+    </ion-card>
+    <!-- <ion-card id="bg" [style.background]="color">
+
+    </ion-card> -->
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>{{lamp_name}}</ion-card-title>
+            <ion-card-subtitle>{{ connectionStateLabel }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-segment [(ngModel)]="DeviceData.power"  color="success">
+                <ion-segment-button value=true>
+                    <ion-label>On</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value=false>
+                    <ion-label>Off</ion-label>
+                </ion-segment-button>
+            </ion-segment>
+            <ion-list>
+
+                <ion-item>
+                    <ion-label>Brightness</ion-label>
+                    <ion-range [pin]="true" max="255" min="1" [pinFormatter]="pinFormatterB" (ionChange)="brightnessUpdate($event)">
+                        <ion-icon slot="start" name="flash-off-outline"></ion-icon>
+                        <ion-icon slot="end" name="flash-outline"></ion-icon>
+                    </ion-range>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Speed</ion-label>
+                    <ion-range [pin]="true" max="255" min="1" [pinFormatter]="pinFormatterS" (ionChange)="speedUpdate($event)">
+                        <ion-icon slot="start" name="speedometer-outline"></ion-icon>
+                        <!-- <ion-icon slot="end" name="flash-outline"></ion-icon> -->
+                    </ion-range>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Select Pattern</ion-label>
+                    <ion-select interface="action-sheet" [(ngModel)]="pattern" placeholder="No Pattern Selected" (ionChange)="handleChange($event)" >
+                        <ion-select-option value="0">Pride</ion-select-option>
+                        <ion-select-option value="1">Color Waves</ion-select-option>
+                        <ion-select-option value="2">Twinkles</ion-select-option>
+                        <ion-select-option value="3">Fire</ion-select-option>
+                        <ion-select-option value="4">Water</ion-select-option>
+                        <ion-select-option value="5">Rainbow</ion-select-option>
+                        <ion-select-option value="6">Rainbow With Glitter</ion-select-option>
+                        <ion-select-option value="7">Confetti</ion-select-option>
+                        <ion-select-option value="8">Sinelon</ion-select-option>
+                        <ion-select-option value="9">Juggle</ion-select-option>
+                        <ion-select-option value="10">BPM</ion-select-option>
+                        <ion-select-option value="11">Solid Color</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Select Pallet</ion-label>
+                    <ion-select interface="action-sheet" placeholder="No Pallet Selected"  (ionChange)="handleChangePLT($event)">
+                        <ion-select-option value="0">Rainbow</ion-select-option>
+                        <ion-select-option value="1">Rainbow Stripe</ion-select-option>
+                        <ion-select-option value="2">Cloud</ion-select-option>
+                        <ion-select-option value="3">Lava</ion-select-option>
+                        <ion-select-option value="4">Ocean</ion-select-option>
+                        <ion-select-option value="5">Forest</ion-select-option>
+                        <ion-select-option value="6">Party</ion-select-option>
+                        <ion-select-option value="7">Heat</ion-select-option>
+                        <ion-select-option value="8">Ice</ion-select-option>
+                        <ion-select-option value="9">Icy Blue</ion-select-option>
+                        <ion-select-option value="10">Snow</ion-select-option>
+                        <ion-select-option value="11">Red & White</ion-select-option>
+                        <ion-select-option value="12">Blue & White</ion-select-option>
+                        <ion-select-option value="13">Fairy</ion-select-option>
+                        <ion-select-option value="14">Retro C9</ion-select-option>
+                        <ion-select-option value="15">Red, Green & White</ion-select-option>
+                        <ion-select-option value="16">Holly</ion-select-option>
+                        <ion-select-option value="17">Sunset_Real</ion-select-option>
+                        <ion-select-option value="18">es_rivendell_15</ion-select-option>
+                        <ion-select-option value="19">es_ocean_breeze_036</ion-select-option>
+                        <ion-select-option value="20">rgi_15</ion-select-option>
+                        <ion-select-option value="21">retro2_16</ion-select-option>
+                        <ion-select-option value="22">Analogous_1</ion-select-option>
+                        <ion-select-option value="23">es_pinksplash_08</ion-select-option>
+                        <ion-select-option value="24">Coral_reef</ion-select-option>
+                        <ion-select-option value="25">es_ocean_breeze_068</ion-select-option>
+                        <ion-select-option value="26">es_pinksplash_07</ion-select-option>
+                        <ion-select-option value="27">es_vintage_01</ion-select-option>
+                        <ion-select-option value="28">departure</ion-select-option>
+                        <ion-select-option value="29">es_landscape_64</ion-select-option>
+                        <ion-select-option value="30">rainbowsherbet</ion-select-option>
+                        <ion-select-option value="31">gr65_hult</ion-select-option>
+                        <ion-select-option value="32">gr64_hult</ion-select-option>
+                        <ion-select-option value="33">GMT_drywet</ion-select-option>
+                        <ion-select-option value="34">ib_jul01</ion-select-option>
+                        <ion-select-option value="35">es_vintage_57</ion-select-option>
+                        <ion-select-option value="36">ib15</ion-select-option>
+                        <ion-select-option value="37">Fuschia_7</ion-select-option>
+                        <ion-select-option value="38">es_emerald_dragon_08</ion-select-option>
+                        <ion-select-option value="39">lava</ion-select-option>
+                        <ion-select-option value="40">fire</ion-select-option>
+                        <ion-select-option value="41">Colorfull</ion-select-option>
+                        <ion-select-option value="42">Magenta_Evening</ion-select-option>
+                        <ion-select-option value="43">Pink_Purple</ion-select-option>
+                        <ion-select-option value="44">es_autumn_19</ion-select-option>
+                        <ion-select-option value="45">BlacK_Blue_Magenta_White</ion-select-option>
+                        <ion-select-option value="46">BlacK_Magenta_Red</ion-select-option>
+                        <ion-select-option value="47">BlacK_Red_Magenta_Yellow</ion-select-option>
+                        <ion-select-option value="48">Blue_Cyan_Yellow</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+
+                <!--
+                <ion-item>
+                    <ion-label>Current value: {{ currentFood | json }}</ion-label>
+                    <p>{{ handlerMessage }}</p>
+                    <p>{{ roleMessage }}</p>
+                </ion-item>
+-->
+
+                <ion-button fill="outline" [cpDialogDisplay]="'inline'"  [cpOutputFormat]="'auto'" [cpWidth]="'auto'" [(colorPicker)]="DeviceData.color"  id="selectColor" color="" shape="round" expand="block">Select Color</ion-button>
+
+                <!--                <ion-button id="selectColor" color="" shape="round" expand="block">Select Schedule</ion-button>-->
+
+                <!-- <div class="float-container"> -->
+                    <div class="float-child">
+                        <ion-button size="default" id="checkForUpdate" (click)="updateData()" expand="block" [fill]="buttonFill" shape="round">Update</ion-button>
+                    </div>
+                    <div class="float-child">
+                        <ion-button size="default" (click)="restartDevice()" color="tertiary" id="restartDevice" expand="block" [fill]="buttonFill" shape="round">Restart</ion-button>
+                    </div>
+                    <div class="float-child">
+                        <ion-button size="default" (click)="presentAlert1()" color="danger" expand="block" shape="round">Delete</ion-button>
+                    </div>
+                <!-- </div> -->
+
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-modal *ngIf="connectionStateLabel == 'Connected'" #modal trigger="checkForUpdate" [canDismiss]="canDismiss" [presentingElement]="page">
+        <ng-template>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-title>Checking for updates</ion-title>
+                    <ion-buttons slot="end">
+                        <ion-button (click)="modal.dismiss()">Cancel</ion-button>
+                    </ion-buttons>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+                <div *ngIf="!updatestatus">
+                    <ion-spinner name="crescent"></ion-spinner>
+            </div>
+
+            <div *ngIf="updatestatus">
+                <p> Data Updated</p>
+        </div>
+
+
+            </ion-content>
+        </ng-template>
+    </ion-modal>
+
+    <!-- <ion-modal #modal trigger="selectColor">
+        <ng-template>
+            <ion-content>
+                <ion-toolbar>
+                    <ion-title>Select Color</ion-title>
+                    <ion-buttons slot="end">
+                        <ion-button color="light" (click)="modal.dismiss()">Close</ion-button>
+                    </ion-buttons>
+                </ion-toolbar>
+                <ion-list>
+                    <ion-item>
+
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ng-template>
+    </ion-modal> -->
+</ion-content>

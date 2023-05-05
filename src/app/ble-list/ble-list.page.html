@@ -1,0 +1,136 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            Lets find your device
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" id="ble-list">
+
+    <div *ngIf="devices.length == 0 "
+    style="text-align:center;margin: 10px; height: 80vh;display: flex;justify-content: center;align-items: center;">
+    <p>Please scan the devices <br> Click on <ion-icon name="search-outline"></ion-icon> icon </p>
+</div>
+
+
+    <!-- <ion-card id="open-modal">
+        <ion-card-header>
+            <ion-card-title>Smart Lamp - 66:KJ:99:00:NM:55</ion-card-title>
+            <ion-card-subtitle>66:KJ:99:00:NM:55</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+            Disconnected
+        </ion-card-content>
+    </ion-card>
+    <ion-card color="success" id="open-custom-dialog-connected">
+        <ion-card-header>
+            <ion-card-title>Smart Lamp - 66:KJ:99:00:NM:55</ion-card-title>
+            <ion-card-subtitle>66:KJ:99:00:NM:55</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+            Connected
+        </ion-card-content>
+    </ion-card>  -->
+    <ion-card id="open-custom-dialog-connected" *ngFor="let device of devices" (click)="openModal(device)" >
+        <ion-card-header >
+            <ion-card-title>{{device.name}} - {{device.id}}</ion-card-title>
+            <ion-card-subtitle>{{device.id}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+            Disconnected 
+            <!-- <ion-button id="open-modal1" expand="block" >Open</ion-button> -->
+        </ion-card-content>
+    </ion-card>
+   
+
+    <ion-modal trigger="open-modal1" #modal>
+        <ng-template>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-buttons slot="start">
+                        <ion-button (click)="modal.dismiss()">Cancel</ion-button>
+                    </ion-buttons>
+                    <ion-title>Connect your new device</ion-title>
+                    <ion-buttons slot="end">
+                        <ion-item id="connectionStateLabel">{{ connectionStateLabel }}</ion-item>
+                    </ion-buttons>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+                <ion-item>
+                    <ion-label position="floating">Enter a name for your device</ion-label>
+                    <ion-input [disabled]="connectionState" type="text" placeholder="Device Name" [(ngModel)]="name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-select [disabled]="connectionState" interface="popover" placeholder="Select Type">
+                        <ion-select-option value="Wood_Lamp">Wood Lamp</ion-select-option>
+                        <ion-select-option value="Acrylic_Lamp">Acrylic Lamp</ion-select-option>
+                        <ion-select-option value="Trophy">Trophy</ion-select-option>
+                        <ion-select-option value="Cloud">Cloud</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <div class="float-container">
+                    <div class="float-child">
+                        <ion-button id="connectionStateBtn" [color]="connectionColor" (click)="isDisconnected()" expand="block" [fill]="buttonFill" shape="round">{{ connectionStateLabel }}</ion-button>
+                    </div>
+
+                    <div class="float-child">
+                        <ion-button [disabled]="connectionState" expand="block" shape="round" >1 Add Device</ion-button>
+                    </div>
+                </div>
+
+
+            </ion-content>
+        </ng-template>
+    </ion-modal>
+
+    <ion-modal #modall trigger="open-custom-dialog-connected">
+        <ng-template>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-buttons slot="start">
+                        <ion-button (click)="modall.dismiss()">Cancel</ion-button>
+                    </ion-buttons>
+                    <ion-title>Connect your new device</ion-title>
+                    <ion-buttons slot="end">
+                        <ion-item id="connectionStateLabel">{{ connectionStateLabel }}</ion-item>
+                    </ion-buttons>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+                <ion-item>
+                    <ion-label position="floating">Enter a name for your device</ion-label>
+                    <ion-input [disabled]="connectionState" type="text" placeholder="Device Name" [(ngModel)]="name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-select [disabled]="connectionState" interface="popover" placeholder="Select Type">
+                        <ion-select-option value="Wood_Lamp">Wood Lamp</ion-select-option>
+                        <ion-select-option value="Acrylic_Lamp">Acrylic Lamp</ion-select-option>
+                        <ion-select-option value="Trophy">Trophy</ion-select-option>
+                        <ion-select-option value="Cloud">Cloud</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <div class="float-container">
+                    <div class="float-child">
+                        <ion-button id="connectionStateBtn" [color]="connectionColor" (click)="isDisconnected()" expand="block" [fill]="buttonFill" shape="round">{{ connectionStateLabel }}</ion-button>
+                    </div>
+
+                    <div class="float-child">
+                        <ion-button [disabled]="connectionState" expand="block" shape="round" >Add Device</ion-button>
+                    </div>
+                </div>
+
+            </ion-content>
+        </ng-template>
+    </ion-modal>
+    <ion-fab slot="fixed" (click)="scan()" vertical="bottom" horizontal="end">
+        <ion-fab-button [color]="scanColor">
+            <ion-icon [name]="scanIcon"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

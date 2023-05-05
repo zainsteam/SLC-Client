@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <!-- <ion-buttons slot="primary">
+            <ion-button [routerLink]="['/settings/']">
+                <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons> -->
+        <ion-title>Welcome!</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <div *ngIf="categories == '' "
+        style="text-align:center;border:2px solid lightgrey; margin: 10px; height: 450px;display: flex;justify-content: center;align-items: center;">
+        <p>No Device Stored <br> Click to + Add Device</p>
+    </div>
+
+
+    <!-- Lamp List -->
+    <div id="lamp_list" class="scrolling-wrapper">
+
+        <ion-card *ngFor="let device of categories" style="overflow: hidden;width:92%;">
+            <a [routerLink]="['/light-controller/', device.id,device.name,device.mac]">
+                <img alt="Silhouette of mountains" src="/assets/img/App_Icon_512x512.png" />
+                <ion-card-header>
+                    <ion-card-title style="overflow: hidden;">{{device.name}} {{device.mac}}</ion-card-title>
+                    <ion-card-subtitle>Connected</ion-card-subtitle>
+
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </a>
+        </ion-card>
+    </div>
+
+    <ion-button shape="round" expand="block" [routerLink]="['/ble-list']">
+        <ion-icon size="large" slot="start" name="add-circle-outline"></ion-icon>
+        Add New Device
+    </ion-button>
+
+</ion-content>
